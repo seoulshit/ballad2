@@ -101,6 +101,13 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .tli .what{font-size:14px;font-weight:700;margin:3px 0}
 .tli .why{font-size:12.5px;color:var(--ink2)}
 .tw{margin-top:10px;overflow-x:auto}.tb{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}.tb th{font-size:11.5px;color:var(--ink2);font-weight:700;text-align:center;padding:6px 4px;border-bottom:1px solid var(--line)}.tb td{text-align:center;padding:7px 4px;border-bottom:1px dashed var(--line)}.tb td.mu{color:var(--mute)}.tb.lp td{text-align:left}.tb.lp td:first-child{width:40px;text-align:center;color:var(--navy)}.tb small{display:block;color:var(--mute);font-size:11px}
+.sec{margin:26px 2px 0;font-size:13px;font-weight:900;color:var(--ink2);letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.sec:after{content:"";flex:1;height:1px;background:var(--line)}
+.stack{display:flex;flex-direction:column;gap:14px;min-width:0}
+.tb.lp tbody{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
+.tb.lp tr{display:grid;grid-template-columns:40px minmax(0,1fr) 52px;align-items:center;border-bottom:1px dashed var(--line)}
+.tb.lp td{border:0}
+@media (max-width:700px){.tb.lp tbody{grid-template-columns:1fr}}
 .foot{font-size:11.5px;color:var(--mute);margin-top:18px;line-height:1.6}
 /* reveal */
 .rv{animation:rise .7s ease both}
@@ -139,7 +146,9 @@ svg{display:block;width:100%;height:auto;overflow:visible}
     <div class="sub">4위 → 5위 → 5위 → 5위 (10/5~11/1)</div><span class="chip up">10/26~11/1 주간 5위</span></div>
 </section>
 
-<section class="grid g2">
+<div class="sec">방송 · 시청률과 대결 결과</div>
+<section class="grid g21" style="margin-top:8px">
+  <div class="stack">
   <div class="card rv" id="c-rating">
     <h2><span class="n">1</span>시청률 — 시즌1과의 격차가 좁혀지는 중</h2>
     <div class="cap">닐슨 전국 가구 시청률(2부), 회차별 · 같은 회차 시즌1 비교</div>
@@ -147,32 +156,15 @@ svg{display:block;width:100%;height:auto;overflow:visible}
     <div class="legend"><span><i style="background:var(--teal)"></i>시즌2</span><span><i style="background:var(--s1)"></i>시즌1 (같은 회차)</span></div>
     <div class="takeaway">시즌1 대비 격차 <b>–1.0%p(3회) → –0.1%p(5회)</b>로 거의 따라잡음. 2라운드(4·5회) 평균 5.25%로 1라운드 평균 5.03%보다 높음.</div>
   </div>
-  <div class="card rv" id="c-yt">
-    <h2><span class="n">2</span>유튜브 — 회차별 본방 무대 누적 조회</h2>
-    <div class="cap">스브스 예능맛집 롱폼 본방 무대 합계 (11/05 17시) · 회차마다 공개 기간이 달라 단순 비교 불가</div>
-    <svg viewBox="0 0 560 250" id="svg-yt" role="img" aria-label="회차별 유튜브 본방 무대 누적 조회"></svg>
-    <div class="takeaway">1회 김소연 무대 <b>450.8만</b>이 시즌2 최다. 5회는 공개 <b>2.8일 만에 153.5만</b>, 4회는 9.8일 만에 244.7만.</div>
+  <div class="card rv" id="c-rtab">
+    <h2><span class="n">2</span>회차별 시청률 상세</h2>
+    <div class="cap">닐슨코리아 가구 시청률(%) · 1부/2부 · 시즌1은 같은 회차 전국 2부</div>
+    <div class="tw"><table class="tb"><thead><tr><th>회차</th><th>전국 1부</th><th>전국 2부</th><th>수도권 1부</th><th>수도권 2부</th><th>시즌1</th></tr></thead><tbody><tr><td>1회</td><td>3.9</td><td><b>5.1</b></td><td>4.7</td><td>6.2</td><td class="mu">4.5</td></tr><tr><td>2회</td><td>3.7</td><td><b>5.0</b></td><td>4.1</td><td>5.7</td><td class="mu">5.6</td></tr><tr><td>3회</td><td>4.2</td><td><b>5.0</b></td><td>4.9</td><td>5.8</td><td class="mu">6.0</td></tr><tr><td>4회</td><td>4.2</td><td><b>5.3</b></td><td>5.0</td><td>6.2</td><td class="mu">5.8</td></tr><tr><td>5회</td><td>3.9</td><td><b>5.2</b></td><td>4.6</td><td>5.8</td><td class="mu">5.3</td></tr></tbody></table></div>
+    <div class="takeaway">수도권 2부는 <b>1회·4회 6.2%</b>가 최고. 1라운드(1~3회)보다 2라운드(4·5회) 평균이 전국·수도권 모두 높음.</div>
   </div>
-</section>
-
-<section class="grid g21">
-  <div class="card rv" id="c-music">
-    <h2><span class="n">3</span>음원 — 4회 곡, 5회 방송 다음날 최고 순위 후 완만한 하락</h2>
-    <div class="cap">멜론 HOT100 30일 차트 순위 (발매 후 경과일, 매일 09시) · 위로 갈수록 상위</div>
-    <svg viewBox="0 0 640 250" id="svg-music" role="img" aria-label="4회 곡 멜론 순위 추이"></svg>
-    <div class="legend"><span><i style="background:var(--teal)"></i>임바다 「그대와 영원히」</span><span><i style="background:var(--navy2)"></i>김수아 「사랑이란」</span></div>
-    <div class="takeaway">5회 다음날(7일차) 최고 기록 후 9일차 48·64위로 하락 → <b>방송 직후 반등, 이후 완만한 하락</b> 패턴 반복. 6회(11/9) 방송 후 반등 여부가 관전 포인트.</div>
   </div>
-  <div class="card rv" id="c-rank">
-    <h2><span class="n">4</span>지금 멜론 상위 곡 (30일 차트, 11/5 09시)</h2>
-    <div class="cap">100위 안 시즌2 곡 <b id="rkcount"></b> 전체 · 어제(11/4) 09시 대비 · 최고 순위는 매일 09시 기록 기준</div>
-    <div id="ranklist" class="rkscroll"></div>
-  </div>
-</section>
-
-<section class="grid g3">
   <div class="card rv" id="c-match">
-    <h2><span class="n">5</span>2라운드 데스매치 결과</h2>
+    <h2><span class="n">3</span>2라운드 데스매치 결과</h2>
     <div class="cap">탑백귀 투표 (150표) · 왼쪽이 승자</div>
     <div class="cap" style="margin-top:10px;font-weight:700;color:var(--ink)">5회 (11/2)</div>
     <div class="match"><div class="row"><span>한로이 <span class="badge b-gold">이변</span></span><span class="l">박예승</span></div>
@@ -195,32 +187,51 @@ svg{display:block;width:100%;height:auto;overflow:visible}
       <div class="vs"><div class="w" data-w="77">77</div><div class="lo" data-w="73">73</div></div>
       <div class="note">4표 차</div></div>
   </div>
+</section>
+
+<div class="sec">음원 · 멜론과 스포티파이</div>
+<section class="grid g21" style="margin-top:8px">
+  <div class="card rv" id="c-music">
+    <h2><span class="n">4</span>음원 — 4회 곡, 5회 방송 다음날 최고 순위 후 완만한 하락</h2>
+    <div class="cap">멜론 HOT100 30일 차트 순위 (발매 후 경과일, 매일 09시) · 위로 갈수록 상위</div>
+    <svg viewBox="0 0 640 250" id="svg-music" role="img" aria-label="4회 곡 멜론 순위 추이"></svg>
+    <div class="legend"><span><i style="background:var(--teal)"></i>임바다 「그대와 영원히」</span><span><i style="background:var(--navy2)"></i>김수아 「사랑이란」</span></div>
+    <div class="takeaway">5회 다음날(7일차) 최고 기록 후 9일차 48·64위로 하락 → <b>방송 직후 반등, 이후 완만한 하락</b> 패턴 반복. 6회(11/9) 방송 후 반등 여부가 관전 포인트.</div>
+  </div>
+  <div class="card rv" id="c-rank">
+    <h2><span class="n">5</span>지금 멜론 상위 곡 (30일 차트, 11/5 09시)</h2>
+    <div class="cap">100위 안 시즌2 곡 <b id="rkcount"></b> 전체 · 어제(11/4) 09시 대비 · 최고 순위는 매일 09시 기록 기준</div>
+    <div id="ranklist" class="rkscroll"></div>
+  </div>
+</section>
+<section class="grid" style="margin-top:14px">
+  <div class="card rv" id="c-sp">
+    <h2><span class="n">6</span>스포티파이 서울 로컬 펄스 (주간)</h2>
+    <div class="cap">서울에서 특히 많이 듣는 곡 Top100 · 10/23~29 주간 · 전주 대비</div>
+    <div class="tw"><table class="tb lp"><tbody><tr><td><b>15</b></td><td>나를 외치다<small>박예승 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲8</td></tr><tr><td><b>23</b></td><td>김성호의 회상<small>임바다 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲7</td></tr><tr><td><b>44</b></td><td>난치병<small>이민우 · 1회</small></td><td style="color:var(--red);font-weight:700;text-align:right">▼2</td></tr><tr><td><b>45</b></td><td>사랑한만큼<small>김선음 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲13</td></tr><tr><td><b>46</b></td><td>안되나요<small>허채민 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲7</td></tr><tr><td><b>51</b></td><td>고열<small>이유빈 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲25</td></tr><tr><td><b>56</b></td><td>언젠가는<small>김도현 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲28</td></tr><tr><td><b>68</b></td><td>세상이 그대를 속일지라도<small>한로이 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲2</td></tr><tr><td><b>78</b></td><td>이별여행<small>민지유 · 1회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>86</b></td><td>Over The Rainbow<small>김수아 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲2</td></tr><tr><td><b>87</b></td><td>Good Bye Sadness, Hello Happiness<small>박진서 · 3회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>93</b></td><td>사랑 그 쓸쓸함에 대하여<small>김소연 · 1회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>94</b></td><td>기도<small>라유정 · 1회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>96</b></td><td>그대 작은 나의 세상이 되어<small>유혜리 · 3회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr></tbody></table></div>
+    <div class="takeaway">시즌2 곡 <b>14곡 진입</b>, 박예승 「나를 외치다」 15위가 최고. 멜론 100위 밖 곡(김도현·라유정 등)도 서울 스포티파이에선 순위권. 한국 일간 Top200은 아직 진입 없음.</div>
+  </div>
+</section>
+
+<div class="sec">유튜브 · 무대 영상 조회</div>
+<section class="grid g3" style="margin-top:8px">
+  <div class="card rv" id="c-yt">
+    <h2><span class="n">7</span>유튜브 — 회차별 본방 무대 누적 조회</h2>
+    <div class="cap">스브스 예능맛집 롱폼 본방 무대 합계 (11/05 17시) · 회차마다 공개 기간이 달라 단순 비교 불가</div>
+    <svg viewBox="0 0 560 250" id="svg-yt" role="img" aria-label="회차별 유튜브 본방 무대 누적 조회"></svg>
+    <div class="takeaway">1회 김소연 무대 <b>450.8만</b>이 시즌2 최다. 5회는 공개 <b>2.8일 만에 153.5만</b>, 4회는 9.8일 만에 244.7만.</div>
+  </div>
   <div class="card rv" id="c-ep5">
-    <h2><span class="n">6</span>5회 무대 영상 반응 (공개 2.8일)</h2>
+    <h2><span class="n">8</span>5회 무대 영상 반응 (공개 2.8일)</h2>
     <div class="cap">스브스 예능맛집 본방 무대 조회수</div>
     <div id="ep5" style="margin-top:10px"></div>
     <div class="takeaway"><b>탈락자 박예승 무대가 1위</b> (승자 한로이의 2.0배). 1:1 대결은 진 쪽 무대도 관심이 큼.</div>
   </div>
   <div class="card rv" id="c-ch">
-    <h2><span class="n">7</span>유튜브 채널별 비중</h2>
+    <h2><span class="n">9</span>유튜브 채널별 비중</h2>
     <div class="cap">4개 채널 합계 6,113만 회 (중복 제거, 11/05 17시)</div>
     <svg viewBox="0 0 300 170" id="svg-ch" role="img" aria-label="유튜브 채널별 조회 비중"></svg>
     <div id="chleg"></div>
-  </div>
-</section>
-
-<section class="grid g2">
-  <div class="card rv" id="c-rtab">
-    <h2><span class="n">8</span>회차별 시청률 상세</h2>
-    <div class="cap">닐슨코리아 가구 시청률(%) · 1부/2부 · 시즌1은 같은 회차 전국 2부</div>
-    <div class="tw"><table class="tb"><thead><tr><th>회차</th><th>전국 1부</th><th>전국 2부</th><th>수도권 1부</th><th>수도권 2부</th><th>시즌1</th></tr></thead><tbody><tr><td>1회</td><td>3.9</td><td><b>5.1</b></td><td>4.7</td><td>6.2</td><td class="mu">4.5</td></tr><tr><td>2회</td><td>3.7</td><td><b>5.0</b></td><td>4.1</td><td>5.7</td><td class="mu">5.6</td></tr><tr><td>3회</td><td>4.2</td><td><b>5.0</b></td><td>4.9</td><td>5.8</td><td class="mu">6.0</td></tr><tr><td>4회</td><td>4.2</td><td><b>5.3</b></td><td>5.0</td><td>6.2</td><td class="mu">5.8</td></tr><tr><td>5회</td><td>3.9</td><td><b>5.2</b></td><td>4.6</td><td>5.8</td><td class="mu">5.3</td></tr></tbody></table></div>
-    <div class="takeaway">수도권 2부는 <b>1회·4회 6.2%</b>가 최고. 1라운드(1~3회)보다 2라운드(4·5회) 평균이 전국·수도권 모두 높음.</div>
-  </div>
-  <div class="card rv" id="c-sp">
-    <h2><span class="n">9</span>스포티파이 서울 로컬 펄스 (주간)</h2>
-    <div class="cap">서울에서 특히 많이 듣는 곡 Top100 · 10/23~29 주간 · 전주 대비</div>
-    <div class="tw" style="max-height:330px;overflow:auto"><table class="tb lp"><tbody><tr><td><b>15</b></td><td>나를 외치다<small>박예승 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲8</td></tr><tr><td><b>23</b></td><td>김성호의 회상<small>임바다 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲7</td></tr><tr><td><b>44</b></td><td>난치병<small>이민우 · 1회</small></td><td style="color:var(--red);font-weight:700;text-align:right">▼2</td></tr><tr><td><b>45</b></td><td>사랑한만큼<small>김선음 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲13</td></tr><tr><td><b>46</b></td><td>안되나요<small>허채민 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲7</td></tr><tr><td><b>51</b></td><td>고열<small>이유빈 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲25</td></tr><tr><td><b>56</b></td><td>언젠가는<small>김도현 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲28</td></tr><tr><td><b>68</b></td><td>세상이 그대를 속일지라도<small>한로이 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲2</td></tr><tr><td><b>78</b></td><td>이별여행<small>민지유 · 1회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>86</b></td><td>Over The Rainbow<small>김수아 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲2</td></tr><tr><td><b>87</b></td><td>Good Bye Sadness, Hello Happiness<small>박진서 · 3회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>93</b></td><td>사랑 그 쓸쓸함에 대하여<small>김소연 · 1회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>94</b></td><td>기도<small>라유정 · 1회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>96</b></td><td>그대 작은 나의 세상이 되어<small>유혜리 · 3회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr></tbody></table></div>
-    <div class="takeaway">시즌2 곡 <b>14곡 진입</b>, 박예승 「나를 외치다」 15위가 최고. 멜론 100위 밖 곡(김도현·라유정 등)도 서울 스포티파이에선 순위권. 한국 일간 Top200은 아직 진입 없음.</div>
   </div>
 </section>
 
