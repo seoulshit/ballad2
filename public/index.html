@@ -131,8 +131,8 @@ svg{display:block;width:100%;height:auto;overflow:visible}
     <div class="num"><span data-count="2337" data-sep="1">0</span><small>만 회</small></div>
     <div class="sub">예능맛집 롱폼 35편 기준</div><span class="chip up">2,000만 회 돌파</span></div>
   <div class="kpi rv"><div class="bar"></div><div class="lab">유튜브 4개 채널 전체</div>
-    <div class="num"><span data-count="6112" data-sep="1">0</span><small>만 회</small></div>
-    <div class="sub">428편 · 롱폼 5,539만 + 쇼츠 573만</div><span class="chip neu">8/1 이후 우발2 영상</span></div>
+    <div class="num"><span data-count="6113" data-sep="1">0</span><small>만 회</small></div>
+    <div class="sub">428편 · 롱폼 5,540만 + 쇼츠 573만</div><span class="chip neu">8/1 이후 우발2 영상</span></div>
   <div class="kpi rv"><div class="bar"></div><div class="lab">넷플릭스 한국 TV 주간</div>
     <div class="num"><span data-count="4">0</span><small>주 연속 TOP10</small></div>
     <div class="sub">4위 → 5위 → 5위 → 5위 (10/5~11/1)</div><span class="chip up">10/26~11/1 주간 5위</span></div>
@@ -150,7 +150,7 @@ svg{display:block;width:100%;height:auto;overflow:visible}
     <h2><span class="n">2</span>유튜브 — 회차별 본방 무대 누적 조회</h2>
     <div class="cap">스브스 예능맛집 롱폼 본방 무대 합계 (11/05 17시) · 회차마다 공개 기간이 달라 단순 비교 불가</div>
     <svg viewBox="0 0 560 250" id="svg-yt" role="img" aria-label="회차별 유튜브 본방 무대 누적 조회"></svg>
-    <div class="takeaway">1회 김소연 무대 <b>450.8만</b>이 시즌2 최다. 5회는 공개 <b>2.8일 만에 153.2만</b>, 4회는 9.8일 만에 244.6만.</div>
+    <div class="takeaway">1회 김소연 무대 <b>450.8만</b>이 시즌2 최다. 5회는 공개 <b>2.8일 만에 153.5만</b>, 4회는 9.8일 만에 244.7만.</div>
   </div>
 </section>
 
@@ -203,7 +203,7 @@ svg{display:block;width:100%;height:auto;overflow:visible}
   </div>
   <div class="card rv" id="c-ch">
     <h2><span class="n">7</span>유튜브 채널별 비중</h2>
-    <div class="cap">4개 채널 합계 6,112만 회 (중복 제거, 11/05 17시)</div>
+    <div class="cap">4개 채널 합계 6,113만 회 (중복 제거, 11/05 17시)</div>
     <svg viewBox="0 0 300 170" id="svg-ch" role="img" aria-label="유튜브 채널별 조회 비중"></svg>
     <div id="chleg"></div>
   </div>
@@ -266,7 +266,7 @@ function T(txt,attrs,parent){const t=E('text',attrs,parent);t.textContent=txt;re
 /* 2. 유튜브 회차별 */
 (function(){
   const s=document.getElementById('svg-yt'); const W=560,H=250,L=58,R=12,Tp=22,B=40;
-  const d=[[954.3,'31일'],[604.8,'24일'],[379.8,'17일'],[244.6,'9.8일'],[153.2,'2.8일']]; const top=['김소연','박예승','박진서','임바다','박예승'];
+  const d=[[954.4,'31일'],[604.9,'24일'],[379.9,'17일'],[244.7,'9.8일'],[153.5,'2.8일']]; const top=['김소연','박예승','박진서','임바다','박예승'];
   const max=1000, bw=58, x=i=>L+18+i*((W-L-R-36)/4), y=v=>Tp+(1-v/max)*(H-Tp-B);
   const g=E('g',{class:'grid'},s);[0,250,500,750,1000].forEach(v=>{E('line',{x1:L,x2:W-R,y1:y(v),y2:y(v)},g);T(v+'만',{x:L-6,y:y(v)+4,'text-anchor':'end','font-size':11,fill:'#8A93A6'},s)});
   d.forEach(([v,days],i)=>{const r2=i>=3; const h=y(0)-y(v);
@@ -312,20 +312,20 @@ function T(txt,attrs,parent){const t=E('text',attrs,parent);t.textContent=txt;re
 
 /* 6. 5회 영상 */
 (function(){
-  const d=[['박예승 (패)',69.1,'var(--red)'],['한로이 (승)',35.3,'var(--teal)'],['박대희 (승)',22.0,'var(--teal)'],['이유빈 (패)',10.5,'var(--s1)'],['신채원 (승)',8.8,'var(--teal)'],['김석윤 (패)',7.7,'var(--s1)']];
+  const d=[['박예승 (패)',69.2,'var(--red)'],['한로이 (승)',35.3,'var(--teal)'],['박대희 (승)',22.0,'var(--teal)'],['이유빈 (패)',10.5,'var(--s1)'],['신채원 (승)',8.8,'var(--teal)'],['김석윤 (패)',7.7,'var(--s1)']];
   const el=document.getElementById('ep5');
-  d.forEach(([n,v,c])=>{const r=document.createElement('div');r.className='hb';r.innerHTML=`<div class="nm">${n}</div><div class="tr"><div class="fl" style="background:${c}" data-w="${v/69.1*100}"></div></div><div class="v">${v.toFixed(1)}만</div>`;el.appendChild(r)});
+  d.forEach(([n,v,c])=>{const r=document.createElement('div');r.className='hb';r.innerHTML=`<div class="nm">${n}</div><div class="tr"><div class="fl" style="background:${c}" data-w="${v/69.2*100}"></div></div><div class="v">${v.toFixed(1)}만</div>`;el.appendChild(r)});
 })();
 
 /* 7. 채널 도넛 */
 (function(){
-  const s=document.getElementById('svg-ch'); const d=[['스브스 예능맛집',3870,'#0B6B5E'],['SBS Entertainment',1326,'#2C3E6B'],['SBS (@SBSNOW)',516,'#C98A12'],['슴올 스테이지',399,'#C8102E']];
+  const s=document.getElementById('svg-ch'); const d=[['스브스 예능맛집',3871,'#0B6B5E'],['SBS Entertainment',1326,'#2C3E6B'],['SBS (@SBSNOW)',516,'#C98A12'],['슴올 스테이지',399,'#C8102E']];
   const tot=d.reduce((a,b)=>a+b[1],0), cx=85,cy=85,r=62,sw=26, C=2*Math.PI*r; let off=0;
   E('circle',{cx,cy,r,fill:'none',stroke:'#EEF0F5','stroke-width':sw},s);
   d.forEach(([n,v,c],i)=>{const len=v/tot*C; const seg=E('circle',{cx,cy,r,fill:'none',stroke:c,'stroke-width':sw,'stroke-dasharray':`0 ${C}`,transform:`rotate(-90 ${cx} ${cy})`,class:'hit'},s);
     seg.dataset.d=`${Math.max(len-2,0)} ${C-Math.max(len-2,0)}`; seg.dataset.o=-off; seg.style.transition=`stroke-dasharray 1s ease ${i*.2}s`; seg.setAttribute('stroke-dashoffset',-off); off+=len;
     bindTip(seg,`${n} · ${v.toLocaleString()}만 회 · ${(v/tot*100).toFixed(0)}%`)});
-  T('6,112만',{x:cx,y:cy+2,'text-anchor':'middle','font-size':17,'font-weight':900,fill:'#1F2D4E'},s);
+  T('6,113만',{x:cx,y:cy+2,'text-anchor':'middle','font-size':17,'font-weight':900,fill:'#1F2D4E'},s);
   T('428편',{x:cx,y:cy+20,'text-anchor':'middle','font-size':11,fill:'#8A93A6'},s);
   const lg=document.getElementById('chleg');
   d.forEach(([n,v,c])=>{const r=document.createElement('div');r.className='hb';r.style.gridTemplateColumns='14px 1fr 110px';
