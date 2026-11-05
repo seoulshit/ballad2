@@ -89,6 +89,7 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 /* rank list */
 .rank{display:grid;grid-template-columns:44px 1fr 60px;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
 .rank:last-child{border:0}
+.rkscroll{margin-top:8px;max-height:420px;overflow-y:auto;padding-right:6px;scrollbar-width:thin}
 .rk{font-weight:900;font-size:18px;color:var(--navy);text-align:center}
 .rk.hot{color:var(--red)}
 .rank .t{font-weight:700}.rank .t small{display:block;font-weight:400;color:var(--mute);font-size:11.5px}
@@ -164,9 +165,8 @@ svg{display:block;width:100%;height:auto;overflow:visible}
   </div>
   <div class="card rv" id="c-rank">
     <h2><span class="n">4</span>지금 멜론 상위 곡 (30일 차트, 11/5 09시)</h2>
-    <div class="cap">시즌2 곡 중 상위 8곡 · 어제(11/4) 09시 대비</div>
-    <div id="ranklist" style="margin-top:8px"></div>
-    <div class="cap" style="margin-top:8px">그 외 30일 차트: 한로이 「세상이 그대를 속일지라도」 80 · 김소연 「사랑 그 쓸쓸함에 대하여」 87 · 박예승 「내게 사랑이 뭐냐고 물어본다면」 96 · 허채민 「안되나요」 98위 · 최고 순위는 매일 09시 기록 기준</div>
+    <div class="cap">100위 안 시즌2 곡 <b id="rkcount"></b> 전체 · 어제(11/4) 09시 대비 · 최고 순위는 매일 09시 기록 기준</div>
+    <div id="ranklist" class="rkscroll"></div>
   </div>
 </section>
 
@@ -302,11 +302,13 @@ function T(txt,attrs,parent){const t=E('text',attrs,parent);t.textContent=txt;re
 (function(){
   const rows=[[35,'Good Bye Sadness, Hello Happiness','박진서 · 3회 · 최고 25위',35],[37,'김성호의 회상','임바다 · 1회 · 최고 19위',36],[40,'나를 외치다','박예승 · 2회 · 최고 27위',41],
     [48,'그대와 영원히','임바다 · 4회 · 최고 37위',43],[52,'그대 내 맘에 들어오면은','박대희 · 5회 · 최고 52위',63],[58,'널 보고 있으면','한로이 · 5회 · 최고 58위',68],
-    [61,'그대 작은 나의 세상이 되어','유혜리 · 3회 · 최고 41위',61],[64,'사랑이란','김수아 · 4회 · 최고 47위',54]];
-  const el=document.getElementById('ranklist');
+    [61,'그대 작은 나의 세상이 되어','유혜리 · 3회 · 최고 41위',61],[64,'사랑이란','김수아 · 4회 · 최고 47위',54],
+    [80,'세상이 그대를 속일지라도','한로이 · 1회 · 최고 57위',null],[87,'사랑 그 쓸쓸함에 대하여','김소연 · 1회 · 최고 41위',null],[96,'내게 사랑이 뭐냐고 물어본다면','박예승 · 5회 · 최고 96위',null],[98,'안되나요','허채민 · 1회 · 최고 52위',null]];
+  /* p: 어제 09시 순위 · 0 = 어제 100위 밖(NEW) · null = 어제 미확인 */
+  const el=document.getElementById('ranklist'); document.getElementById('rkcount').textContent=rows.length+'곡';
   rows.forEach(([r,t,a,p],i)=>{const d=document.createElement('div');d.className='rank';
-    const diff=p==null?'<span style="color:var(--gold)">NEW</span>':(p-r>0?`<span style="color:var(--teal)">▲${p-r}</span>`:(p-r<0?`<span style="color:var(--red)">▼${r-p}</span>`:'–'));
-    d.innerHTML=`<div class="rk ${r<=50?'hot':''}" data-count="${r}">0</div><div class="t">${t}<small>${a}</small></div><div class="d">${diff}<br><span style="color:var(--mute);font-weight:400;font-size:11px">${p==null?'1일차':'어제 '+p+'위'}</span></div>`;
+    const diff=p==null?'<span style="color:var(--mute)">–</span>':p===0?'<span style="color:var(--gold)">NEW</span>':(p-r>0?`<span style="color:var(--teal)">▲${p-r}</span>`:(p-r<0?`<span style="color:var(--red)">▼${r-p}</span>`:'–'));
+    d.innerHTML=`<div class="rk ${r<=50?'hot':''}" data-count="${r}">0</div><div class="t">${t}<small>${a}</small></div><div class="d">${diff}<br><span style="color:var(--mute);font-weight:400;font-size:11px">${p==null?'어제 미확인':p===0?'어제 100위 밖':'어제 '+p+'위'}</span></div>`;
     el.appendChild(d)});
 })();
 
