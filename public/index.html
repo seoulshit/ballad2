@@ -90,6 +90,14 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .rank{display:grid;grid-template-columns:44px 1fr 60px;align-items:center;gap:10px;padding:7px 0;border-bottom:1px dashed var(--line);font-size:13.5px}
 .rank:last-child{border:0}
 .rkscroll{margin-top:8px;max-height:420px;overflow-y:auto;padding-right:6px;scrollbar-width:thin}
+.swipe{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 28px)/3);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:14px;padding-bottom:6px;scrollbar-width:thin;cursor:grab;overscroll-behavior-x:contain}
+.swipe.drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.swipe>.card{scroll-snap-align:start;display:flex;flex-direction:column;min-width:0}
+.swipe>.card .takeaway{margin-top:auto}.swipe>.card .rkscroll,.swipe>.card .tw{margin-bottom:12px}
+.swipe .tw{max-height:420px;overflow-y:auto;scrollbar-width:thin}
+.swipe .tb.lp tbody{grid-template-columns:1fr}
+.dots{display:none;justify-content:center;gap:6px;margin-top:6px}.dots i{width:7px;height:7px;border-radius:50%;background:var(--line);transition:background .2s,width .2s}.dots i.on{background:var(--teal);width:18px;border-radius:4px}
+@media (max-width:1000px){.swipe{grid-auto-columns:86%}.dots{display:flex}}
 .rk{font-weight:900;font-size:18px;color:var(--navy);text-align:center}
 .rk.hot{color:var(--red)}
 .rank .t{font-weight:700}.rank .t small{display:block;font-weight:400;color:var(--mute);font-size:11.5px}
@@ -190,45 +198,53 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 </section>
 
 <div class="sec">음원 · 멜론과 스포티파이</div>
-<section class="grid g21" style="margin-top:8px">
+<section class="grid" style="margin-top:8px">
   <div class="card rv" id="c-music">
     <h2><span class="n">4</span>음원 — 4회 곡, 방송 없는 주말에도 소폭 반등</h2>
     <div class="cap">멜론 HOT100 30일 차트 순위 (발매 후 경과일, 매일 09시) · 위로 갈수록 상위</div>
-    <svg viewBox="0 0 640 250" id="svg-music" role="img" aria-label="4회 곡 멜론 순위 추이"></svg>
+    <svg viewBox="0 0 1200 250" id="svg-music" role="img" aria-label="4회 곡 멜론 순위 추이"></svg>
     <div class="legend"><span><i style="background:var(--teal)"></i>임바다 「그대와 영원히」</span><span><i style="background:var(--navy2)"></i>김수아 「사랑이란」</span></div>
     <div class="takeaway">5회 다음날(7일차) 최고 기록 후 9일차 48위까지 내려갔다가 <b>11일차(09시) 44위로 다시 상승</b>. 김수아 곡은 64→65위로 유지. 6회(11/9) 방송 후 반등 폭이 관전 포인트.</div>
   </div>
-  <div class="card rv" id="c-rank">
-    <h2><span class="n">5</span>지금 멜론 상위 곡 (30일 차트, 11/7 15시)</h2>
-    <div class="cap">30일 차트 100위 안 시즌2 곡 <b id="rkcount"></b> 전체 · 11/5 09시 대비(11/6 기록 없음) · 최고 순위는 확인된 매일 09시 기록 기준 · 1회 곡은 발매 30일이 지나 100일 차트로만 집계 (100일 차트 6곡: 임바다 「김성호의 회상」 70위·박예승 「나를 외치다」 75위 등)</div>
-    <div id="ranklist" class="rkscroll"></div>
-  </div>
 </section>
-<section class="grid" style="margin-top:14px">
+<section class="swipe" id="swipe" aria-label="멜론 100일 차트·30일 차트·스포티파이 로컬 펄스 (옆으로 넘겨 보기)">
+  <div class="card rv" id="c-rank100">
+    <h2><span class="n">5</span>멜론 100일 차트 (11/7 15시)</h2>
+    <div class="cap">100위 안 시즌2 곡 <b id="rkcount100"></b> 전체 · 오늘 09시 대비 · 11/5 09시 5곡 → 6곡</div>
+    <div id="ranklist100" class="rkscroll"></div>
+    <div class="takeaway"><b>1회 곡 4곡이 발매 30일이 지나 30일 차트에서 빠짐</b>(김성호의 회상·세상이 그대를 속일지라도·사랑 그 쓸쓸함에 대하여·안되나요). 100일 차트에선 임바다 「김성호의 회상」이 <b>70위로 시즌2 1위</b>. 회차별 곡이 공개 30일을 넘길 때마다 같은 변화가 반복됨.</div>
+  </div>
+  <div class="card rv" id="c-rank">
+    <h2><span class="n">6</span>멜론 30일 차트 (11/7 15시)</h2>
+    <div class="cap">100위 안 시즌2 곡 <b id="rkcount"></b> 전체 · 11/5 09시 대비(11/6 기록 없음) · 최고 순위는 확인된 매일 09시 기록 기준</div>
+    <div id="ranklist" class="rkscroll"></div>
+    <div class="takeaway">50위 안 <b>5곡</b>. 5회 곡 박대희·한로이가 48·49위로 40위권 진입, 박예승 「나를 외치다」 35위가 시즌2 최고.</div>
+  </div>
   <div class="card rv" id="c-sp">
-    <h2><span class="n">6</span>스포티파이 서울 로컬 펄스 (주간)</h2>
+    <h2><span class="n">7</span>스포티파이 서울 로컬 펄스 (주간)</h2>
     <div class="cap">서울에서 특히 많이 듣는 곡 Top100 · 10/30~11/5 주간 · 전주 대비</div>
     <div class="tw"><table class="tb lp"><tbody><tr><td><b>14</b></td><td>그대 작은 나의 세상이 되어<small>유혜리 · 3회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲82</td></tr><tr><td><b>19</b></td><td>나를 외치다<small>박예승 · 2회</small></td><td style="color:var(--red);font-weight:700;text-align:right">▼4</td></tr><tr><td><b>21</b></td><td>Good Bye Sadness, Hello Happiness<small>박진서 · 3회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲66</td></tr><tr><td><b>22</b></td><td>김성호의 회상<small>임바다 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲1</td></tr><tr><td><b>35</b></td><td>난치병<small>이민우 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲9</td></tr><tr><td><b>39</b></td><td>안되나요<small>허채민 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲7</td></tr><tr><td><b>42</b></td><td>이별여행<small>민지유 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲36</td></tr><tr><td><b>43</b></td><td>사랑한만큼<small>김선음 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲2</td></tr><tr><td><b>48</b></td><td>세상이 그대를 속일지라도<small>한로이 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲20</td></tr><tr><td><b>49</b></td><td>고열<small>이유빈 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲2</td></tr><tr><td><b>57</b></td><td>언젠가는<small>김도현 · 2회</small></td><td style="color:var(--red);font-weight:700;text-align:right">▼1</td></tr><tr><td><b>59</b></td><td>Over The Rainbow<small>김수아 · 2회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲27</td></tr><tr><td><b>68</b></td><td>기도<small>라유정 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲26</td></tr><tr><td><b>71</b></td><td>그땐 미처 알지 못했지<small>조승범 · 3회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>72</b></td><td>Think About' Chu<small>박대희 · 2회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>77</b></td><td>사랑 그 쓸쓸함에 대하여<small>김소연 · 1회</small></td><td style="color:var(--teal);font-weight:700;text-align:right">▲16</td></tr><tr><td><b>88</b></td><td>마법의성<small>김훈오 · 3회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr><tr><td><b>98</b></td><td>찬바람이 불면<small>김하율 · 3회</small></td><td style="color:var(--gold2);font-weight:700;text-align:right">NEW</td></tr></tbody></table></div>
     <div class="takeaway">시즌2 곡 <b>18곡 진입</b>(전주 14곡). 유혜리 「그대 작은 나의 세상이 되어」 <b>14위(▲82)</b>로 시즌2 최고이자 이번 주 전체 최대 상승. 3회 곡 4곡 새로 진입. 멜론 100위 밖 곡(김도현·라유정·조승범 등)도 서울 스포티파이에선 순위권.</div>
   </div>
 </section>
+<div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
 
 <div class="sec">유튜브 · 무대 영상 조회</div>
 <section class="grid g3" style="margin-top:8px">
   <div class="card rv" id="c-yt">
-    <h2><span class="n">7</span>유튜브 — 회차별 본방 무대 누적 조회</h2>
+    <h2><span class="n">8</span>유튜브 — 회차별 본방 무대 누적 조회</h2>
     <div class="cap">스브스 예능맛집 롱폼 본방 무대 합계 (11/07 15시) · 회차마다 공개 기간이 달라 단순 비교 불가</div>
     <svg viewBox="0 0 560 250" id="svg-yt" role="img" aria-label="회차별 유튜브 본방 무대 누적 조회"></svg>
     <div class="takeaway">1회 김소연 무대 <b>457.3만</b>이 시즌2 최다. 5회는 공개 <b>4.7일 만에 189.2만</b>, 4회는 11.7일 만에 262.7만.</div>
   </div>
   <div class="card rv" id="c-ep5">
-    <h2><span class="n">8</span>5회 무대 영상 반응 (공개 4.7일)</h2>
+    <h2><span class="n">9</span>5회 무대 영상 반응 (공개 4.7일)</h2>
     <div class="cap">스브스 예능맛집 본방 무대 조회수</div>
     <div id="ep5" style="margin-top:10px"></div>
     <div class="takeaway"><b>탈락자 박예승 무대가 1위</b> (승자 한로이의 1.8배). 1:1 대결은 진 쪽 무대도 관심이 큼.</div>
   </div>
   <div class="card rv" id="c-ch">
-    <h2><span class="n">9</span>유튜브 채널별 비중</h2>
+    <h2><span class="n">10</span>유튜브 채널별 비중</h2>
     <div class="cap">4개 채널 합계 6,306만 회 (중복 제거, 11/07 15시)</div>
     <svg viewBox="0 0 300 170" id="svg-ch" role="img" aria-label="유튜브 채널별 조회 비중"></svg>
     <div id="chleg"></div>
@@ -292,7 +308,7 @@ function T(txt,attrs,parent){const t=E('text',attrs,parent);t.textContent=txt;re
 
 /* 3. 음원 추이 (뒤집힌 축) */
 (function(){
-  const s=document.getElementById('svg-music'); const W=640,H=250,L=40,R=110,Tp=16,B=34;
+  const s=document.getElementById('svg-music'); const W=Math.round(Math.max(640,Math.min(1240,s.getBoundingClientRect().width||640))),H=250,L=40,R=130,Tp=16,B=34; s.setAttribute('viewBox',`0 0 ${W} ${H}`);
   const lab=['1일차\n10/28','3일차\n10/30','6일차\n11/2','7일차\n11/3 (5회 다음날)','8일차\n11/4','9일차\n11/5','11일차\n11/7'];
   const A=[59,41,43,37,43,48,44], K=[82,58,49,47,54,64,65];
   const r0=30,r1=90, x=i=>L+i*(W-L-R)/6, y=v=>Tp+(v-r0)/(r1-r0)*(H-Tp-B);
@@ -316,11 +332,16 @@ function T(txt,attrs,parent){const t=E('text',attrs,parent);t.textContent=txt;re
     [64,'사랑이란','김수아 · 4회 · 최고 47위',64],[77,'내게 사랑이 뭐냐고 물어본다면','박예승 · 5회 · 최고 84위',96],
     [97,'사랑은','이민우 · 4회 · 최고 기록 미확인',0],[99,'고열','이유빈 · 2회 · 최고 기록 미확인',0]];
   /* p: 11/5 09시 순위(직전 기록) · 0 = 11/5 100위 밖(NEW) · null = 미확인 */
-  const el=document.getElementById('ranklist'); document.getElementById('rkcount').textContent=rows.length+'곡';
-  rows.forEach(([r,t,a,p],i)=>{const d=document.createElement('div');d.className='rank';
+  const rows100=[[70,'김성호의 회상','임바다 · 1회',73],[75,'나를 외치다','박예승 · 2회',77],[77,'Good Bye Sadness, Hello Happiness','박진서 · 3회',69],
+    [85,'그대와 영원히','임바다 · 4회',84],[95,'그대 내 맘에 들어오면은','박대희 · 5회',89],[97,'널 보고 있으면','한로이 · 5회',88]];
+  /* rows100 p: 오늘 09시 100일 차트 순위 */
+  function render(id,cid,list,lab){const el=document.getElementById(id); document.getElementById(cid).textContent=list.length+'곡';
+  list.forEach(([r,t,a,p],i)=>{const d=document.createElement('div');d.className='rank';
     const diff=p==null?'<span style="color:var(--mute)">–</span>':p===0?'<span style="color:var(--gold)">NEW</span>':(p-r>0?`<span style="color:var(--teal)">▲${p-r}</span>`:(p-r<0?`<span style="color:var(--red)">▼${r-p}</span>`:'–'));
-    d.innerHTML=`<div class="rk ${r<=50?'hot':''}" data-count="${r}">0</div><div class="t">${t}<small>${a}</small></div><div class="d">${diff}<br><span style="color:var(--mute);font-weight:400;font-size:11px">${p==null?'11/5 미확인':p===0?'11/5 100위 밖':'11/5 '+p+'위'}</span></div>`;
-    el.appendChild(d)});
+    d.innerHTML=`<div class="rk ${r<=50?'hot':''}" data-count="${r}">0</div><div class="t">${t}<small>${a}</small></div><div class="d">${diff}<br><span style="color:var(--mute);font-weight:400;font-size:11px">${p==null?lab+' 미확인':p===0?lab+' 100위 밖':lab+' '+p+'위'}</span></div>`;
+    el.appendChild(d)})}
+  render('ranklist','rkcount',rows,'11/5');
+  render('ranklist100','rkcount100',rows100,'09시');
 })();
 
 /* 6. 5회 영상 */
@@ -344,6 +365,15 @@ function T(txt,attrs,parent){const t=E('text',attrs,parent);t.textContent=txt;re
   d.forEach(([n,v,c])=>{const r=document.createElement('div');r.className='hb';r.style.gridTemplateColumns='14px 1fr 110px';
     r.innerHTML=`<div style="width:12px;height:12px;border-radius:3px;background:${CM[c]||c}"></div><div class="nm">${n}</div><div class="v">${(v/tot*100).toFixed(0)}% <span style="color:var(--mute);font-weight:400">${v.toLocaleString()}만</span></div>`;lg.appendChild(r)});
   s.querySelectorAll('circle[data-d]').forEach(c=>c._go=()=>c.setAttribute('stroke-dasharray',c.dataset.d));
+})();
+
+/* 가로 드래그·스와이프 */
+(function(){const w=document.getElementById('swipe'),dots=[...document.querySelectorAll('#dots i')];let down=false,sx=0,sl=0,moved=false;
+  w.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||w.scrollWidth<=w.clientWidth+2)return;down=true;moved=false;sx=e.clientX;sl=w.scrollLeft});
+  addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;w.classList.add('drag')}w.scrollLeft=sl-dx});
+  addEventListener('pointerup',()=>{if(!down)return;down=false;w.classList.remove('drag');const c=w.children[0].getBoundingClientRect().width+14;w.scrollTo({left:Math.round(w.scrollLeft/c)*c,behavior:'smooth'})});
+  w.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
+  w.addEventListener('scroll',()=>{const c=w.children[0].getBoundingClientRect().width+14;const i=Math.min(dots.length-1,Math.round(w.scrollLeft/c));dots.forEach((d,k)=>d.classList.toggle('on',k===i))},{passive:true});
 })();
 
 /* count-up + reveal */
