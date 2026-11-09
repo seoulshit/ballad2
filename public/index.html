@@ -112,6 +112,8 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .sec{margin:26px 2px 0;font-size:13px;font-weight:900;color:var(--ink2);letter-spacing:.02em;display:flex;align-items:center;gap:10px}
 .sec:after{content:"";flex:1;height:1px;background:var(--line)}
 .stack{display:flex;flex-direction:column;gap:14px;min-width:0}
+/* 2번(시청률 상세) 카드 하단을 3번(데스매치) 카드 하단에 맞춤 */
+.g21>.stack>.card:last-child{flex:1;display:flex;flex-direction:column}.g21>.stack>.card:last-child .takeaway{margin-top:auto}
 .tb.lp tbody{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
 .tb.lp tr{display:grid;grid-template-columns:40px minmax(0,1fr) 52px;align-items:center;border-bottom:1px dashed var(--line)}
 .tb.lp td{border:0}
