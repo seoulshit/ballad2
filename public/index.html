@@ -123,6 +123,29 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .tb.lp tr{display:grid;grid-template-columns:40px minmax(0,1fr) 52px;align-items:center;border-bottom:1px dashed var(--line)}
 .tb.lp td{border:0}
 @media (max-width:700px){.tb.lp tbody{grid-template-columns:1fr}}
+/* 4번 회차별 대표곡 */
+#eprank{margin-top:8px}
+.epr{display:grid;grid-template-columns:minmax(150px,240px) minmax(0,1fr) 92px;align-items:center;gap:14px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.epr:last-child{border:0}
+.epr .lb{font-size:13px;font-weight:700;color:var(--ink);min-width:0}
+.epr .lb small{display:block;font-weight:400;color:var(--mute);font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.epr .ep{display:inline-block;min-width:34px;font-size:11.5px;font-weight:900;color:var(--card);background:var(--navy);border-radius:5px;padding:1px 6px;margin-right:6px;text-align:center}
+.eptr{position:relative;height:30px}
+.eptr:before{content:"";position:absolute;left:0;right:0;top:14px;height:2px;background:var(--track);border-radius:2px}
+.eptr .z{position:absolute;left:0;width:calc(49/99*100%);top:6px;height:18px;background:var(--redbg);opacity:.6;border-radius:4px}
+.eptr .ln{position:absolute;top:14px;height:2px;background:var(--s1)}
+.eptr .pt{position:absolute;top:15px;transform:translate(-50%,-50%) scale(0);width:14px;height:14px;border-radius:50%;border:2px solid var(--card);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.on .eptr .pt{transform:translate(-50%,-50%) scale(1)}
+.eptr .pt.best{background:var(--gold)}.eptr .pt.cur{background:var(--teal);width:16px;height:16px}
+.eptr .tx{position:absolute;top:-4px;transform:translateX(-50%);font-size:11px;font-weight:700;white-space:nowrap}
+.eptr .tx.best{color:var(--gold2)}.eptr .tx.cur{color:var(--teal);top:auto;bottom:-6px}
+.eptr .out{position:absolute;right:0;top:6px;font-size:11.5px;color:var(--mute)}
+.epr .cnt{text-align:right;font-size:12px;color:var(--ink2)}.epr .cnt b{font-size:17px;color:var(--navy);margin-right:2px}
+.eplegend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink2);margin-top:8px}
+.eplegend i{display:inline-block;vertical-align:middle;margin-right:5px}
+.eplegend .dot{width:10px;height:10px;border-radius:50%}.eplegend .dot.best{background:var(--gold)}.eplegend .dot.cur{background:var(--teal)}.eplegend .zone{width:16px;height:10px;background:var(--redbg);border-radius:3px}
+.epaxis{display:grid;grid-template-columns:minmax(150px,240px) minmax(0,1fr) 92px;gap:14px;font-size:10.5px;color:var(--mute)}.epaxis div:nth-child(2){display:flex;justify-content:space-between}
+@media (max-width:700px){.epr,.epaxis{grid-template-columns:minmax(0,1fr) 64px}.epr .lb{grid-column:1/-1}.epaxis div:first-child{display:none}.eptr .out{top:auto;bottom:-8px;font-size:10.5px}}
 .foot{font-size:11.5px;color:var(--mute);margin-top:18px;line-height:1.6}
 /* reveal */
 .rv{animation:rise .7s ease both}
@@ -219,11 +242,11 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 <div class="sec">음원 · 멜론과 스포티파이</div>
 <section class="grid" style="margin-top:8px">
   <div class="card rv" id="c-music">
-    <h2><span class="n">4</span>음원 — 4회 곡, 발매 2주 지나 하락</h2>
-    <div class="cap">멜론 HOT100 30일 차트 순위 (발매 후 경과일, 매일 09시) · 위로 갈수록 상위</div>
-    <svg viewBox="0 0 1200 250" id="svg-music" role="img" aria-label="4회 곡 멜론 순위 추이"></svg>
-    <div class="legend"><span><i style="background:var(--teal)"></i>임바다 「그대와 영원히」</span><span><i style="background:var(--navy2)"></i>김수아 「사랑이란」</span></div>
-    <div class="takeaway">임바다 곡은 13일차 48위에서 <b>14일차(11/10 09시) 67위</b>, 김수아 곡은 62위 → 82위. 6회 방송 다음날에도 반등 없이 내려감. 6회 곡은 11/10 정오 발매(13시 박진서 「바람의 노래」 30일 차트 77위).</div>
+    <h2><span class="n">4</span>음원 — 회차별 대표곡 멜론 성적</h2>
+    <div class="cap">멜론 HOT100 30일 차트 · 회차별 최고 순위 곡 · 왼쪽일수록 상위 · 오른쪽 숫자는 회차별 현재 진입 곡 수</div>
+    <div class="eplegend"><span><i class="dot best"></i>최고 순위 (매일 09시 기록)</span><span><i class="dot cur"></i>현재 (11/10 13시)</span><span><i class="zone"></i>50위 이내</span></div>
+    <div id="eprank"></div>
+    <div class="takeaway">회차별 최고 순위는 <b>1회 19위 → 2·3회 20위대 → 4·5회 30~40위대</b>로 갈수록 낮아지는 흐름. 박진서는 3회 곡이 현재 시즌2 최고(48위)이고, 정오에 나온 6회 곡도 1시간 만에 77위로 들어와 <b>2곡 동시 진입</b>. 1회 곡은 발매 30일이 지나 30일 차트에서 빠짐.</div>
   </div>
 </section>
 <section class="swipe" id="swipe" aria-label="멜론 100일 차트·30일 차트·스포티파이 로컬 펄스 (옆으로 넘겨 보기)">
@@ -324,23 +347,26 @@ function T(txt,attrs,parent){const t=E('text',attrs,parent);t.textContent=txt;re
   E('line',{x1:L,x2:W-R,y1:y(0),y2:y(0),stroke:'#C9CED9'},s);
 })();
 
-/* 3. 음원 추이 (뒤집힌 축) */
+/* 3. 회차별 대표곡 (멜론 30일 차트) — 매 업데이트 때 cur·n 갱신, 새 회차는 행 추가 */
 (function(){
-  const s=document.getElementById('svg-music'); const W=Math.round(Math.max(640,Math.min(1240,s.getBoundingClientRect().width||640))),H=250,L=40,R=130,Tp=16,B=34; s.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  const lab=['1일차\n10/28','3일차\n10/30','6일차\n11/2','7일차\n11/3 (5회 다음날)','8일차\n11/4','9일차\n11/5','11일차\n11/7','12일차\n11/8','13일차\n11/9','14일차\n11/10 (6회 다음날)'];
-  const A=[59,41,43,37,43,48,44,60,48,67], K=[82,58,49,47,54,64,65,64,62,82];
-  const r0=30,r1=90, x=i=>L+i*(W-L-R)/(lab.length-1), y=v=>Tp+(v-r0)/(r1-r0)*(H-Tp-B);
-  const g=E('g',{class:'grid'},s);[30,40,50,60,70,80,90].forEach(v=>{E('line',{x1:L,x2:W-R,y1:y(v),y2:y(v)},g);T(v+'위',{x:L-6,y:y(v)+4,'text-anchor':'end','font-size':11,fill:'#8A93A6'},s)});
-  E('rect',{x:L,y:y(30),width:W-R-L,height:y(50)-y(30),fill:'#FBE7EA',opacity:.5},s).parentNode.insertBefore(s.lastChild,g);
-  T('50위 이내',{x:L+8,y:y(30)+14,'text-anchor':'start','font-size':11,'font-weight':700,fill:'#C8102E'},s);
-  lab.forEach((t,i)=>{const [a,b]=t.split('\n');T(a,{x:x(i),y:H-18,'text-anchor':'middle','font-size':12,'font-weight':700,fill:'#4A5468'},s);T(b,{x:x(i),y:H-4,'text-anchor':'middle','font-size':10.5,fill:i==3?'#C8102E':'#8A93A6','font-weight':i==3?700:400},s)});
-  [[A,'#0B6B5E','임바다',[37,'최고 37위']],[K,'#2C3E6B','김수아',[47,'최고 47위']]].forEach(([arr,col,nm,best],k)=>{
-    const d=arr.map((v,i)=>(i?'L':'M')+x(i)+' '+y(v)).join(' ');
-    const p=E('path',{d,fill:'none',stroke:col,'stroke-width':3,'stroke-linecap':'round','stroke-linejoin':'round',class:'draw'},s);p.style.setProperty('--len',p.getTotalLength());p.style.transitionDelay=(k*.3)+'s';
-    arr.forEach((v,i)=>{const c=E('circle',{cx:x(i),cy:y(v),r:i==3?8:5.5,fill:col,stroke:'#fff','stroke-width':2,class:'pop hit',style:`transition-delay:${1+i*.15+k*.2}s`},s);bindTip(c,`${nm} · ${lab[i].replace('\n',' ')} · ${v}위`);
-      T(v+'',{x:x(i),y:y(v)+(k?20:-12),'text-anchor':'middle','font-size':12,'font-weight':700,fill:'#141B2D',class:'pop',style:`transition-delay:${1.2+i*.15}s`},s)});
-    const gapY=Math.abs(y(A.at(-1))-y(K.at(-1)))<16?(k?10:-6):4; T(nm+' '+best[1],{x:x(arr.length-1)+16,y:y(arr.at(-1))+gapY,'font-size':12.5,'font-weight':900,fill:col,class:'pop',style:'transition-delay:1.9s'},s);
-  });
+  /* [회차, 곡명, 참가자, 최고 순위(매일 09시 기록, 없으면 null), 현재 순위(30일 차트 100위 밖이면 null), 회차 곡 현재 진입 수, 현재 순위 없을 때 문구] */
+  const EP=[[1,'김성호의 회상','임바다',19,null,0,'발매 30일 경과 · 100일 차트 88위'],
+    [2,'나를 외치다','박예승',27,57,1,''],
+    [3,'Good Bye Sadness, Hello Happiness','박진서',25,48,2,''],
+    [4,'그대와 영원히','임바다',37,64,2,''],
+    [5,'그대 내 맘에 들어오면은','박대희',44,59,3,''],
+    [6,'바람의 노래','박진서',null,77,1,'']];
+  const pos=r=>((r-1)/99*100).toFixed(2)+'%';
+  const el=document.getElementById('eprank');
+  const ax=document.createElement('div');ax.className='epaxis';ax.innerHTML='<div></div><div><span>1위</span><span>25</span><span>50</span><span>75</span><span>100위</span></div><div></div>';el.appendChild(ax);
+  EP.forEach(([ep,t,a,best,cur,n,note],i)=>{const r=document.createElement('div');r.className='epr';
+    let tr='<div class="z"></div>';
+    if(best!=null&&cur!=null){const l=Math.min(best,cur),h=Math.max(best,cur);tr+=`<div class="ln" style="left:${pos(l)};width:calc(${pos(h)} - ${pos(l)})"></div>`}
+    if(best!=null)tr+=`<div class="pt best" style="left:${pos(best)};transition-delay:${.3+i*.1}s" title="최고 ${best}위"></div><div class="tx best" style="left:${pos(best)}">최고 ${best}</div>`;
+    if(cur!=null)tr+=`<div class="pt cur" style="left:${pos(cur)};transition-delay:${.5+i*.1}s" title="현재 ${cur}위"></div><div class="tx cur" style="left:${pos(cur)}">${best==null?'첫 진입 ':'현재 '}${cur}</div>`;
+    else tr+=`<div class="out">${note}</div>`;
+    r.innerHTML=`<div class="lb"><span class="ep">${ep}회</span>${a}<small>「${t}」</small></div><div class="eptr">${tr}</div><div class="cnt"><b>${n}</b>곡</div>`;
+    el.appendChild(r)});
 })();
 
 /* 4. 상위 곡 */
