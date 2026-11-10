@@ -114,6 +114,11 @@ svg{display:block;width:100%;height:auto;overflow:visible}
 .stack{display:flex;flex-direction:column;gap:14px;min-width:0}
 /* 2번(시청률 상세) 카드 하단을 3번(데스매치) 카드 하단에 맞춤 */
 .g21>.stack>.card:last-child{flex:1;display:flex;flex-direction:column}.g21>.stack>.card:last-child .takeaway{margin-top:auto}
+/* 3번(데스매치) 카드는 왼쪽 1·2번 높이에 맞추고 내용은 카드 안에서 스크롤 */
+#c-match{display:flex;flex-direction:column;min-width:0}
+#c-match .mscroll{margin-top:2px;padding-right:6px;scrollbar-width:thin}
+@media (min-width:1001px){#c-match{height:0;min-height:100%}#c-match .mscroll{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}}
+@media (max-width:1000px){#c-match .mscroll{max-height:560px;overflow-y:auto}}
 .tb.lp tbody{display:grid;grid-template-columns:1fr 1fr;column-gap:28px}
 .tb.lp tr{display:grid;grid-template-columns:40px minmax(0,1fr) 52px;align-items:center;border-bottom:1px dashed var(--line)}
 .tb.lp td{border:0}
@@ -176,6 +181,7 @@ svg{display:block;width:100%;height:auto;overflow:visible}
   <div class="card rv" id="c-match">
     <h2><span class="n">3</span>2라운드 데스매치 결과</h2>
     <div class="cap">탑백귀 투표 (150표) · 왼쪽이 승자</div>
+    <div class="mscroll">
     <div class="cap" style="margin-top:10px;font-weight:700;color:var(--ink)">6회 (11/9)</div>
     <div class="match"><div class="row"><span>김소연</span><span class="l">김훈오</span></div>
       <div class="vs"><div class="w" data-w="101">101</div><div class="lo" data-w="49">49</div></div>
@@ -206,6 +212,7 @@ svg{display:block;width:100%;height:auto;overflow:visible}
     <div class="match"><div class="row"><span>이민우</span><span class="l">김선음</span></div>
       <div class="vs"><div class="w" data-w="77">77</div><div class="lo" data-w="73">73</div></div>
       <div class="note">4표 차</div></div>
+    </div>
   </div>
 </section>
 
